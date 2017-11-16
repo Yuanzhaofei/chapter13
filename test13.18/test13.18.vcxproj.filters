@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="X.h">
+    <ClInclude Include="Employee.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
