@@ -16,5 +16,5 @@ private:
 	string name;
 	size_t id;
 };
-size_t Employee::globalId = 0;
+size_t Employee::globalId = 0;//类内静态成员的外部定义
 #endif // !EMPLOYEE_H
