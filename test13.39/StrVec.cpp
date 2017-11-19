@@ -51,12 +51,28 @@ StrVec::StrVec(const StrVec &sv) {
 	elements = newData.first;
 	cap = first_free = newData.second;
 }
+//移动构造函数，要显示声明不抛出异常
+StrVec::StrVec(StrVec &&s) noexcept :elements(s.elements),first_free(s.first_free),cap(s.cap){
+	s.elements = s.first_free = s.cap = nullptr;//确保销毁s时不释放已经转移控制权的内存
+}
 //拷贝赋值运算符
 StrVec& StrVec::operator=(const StrVec &rsv) {
 	auto currData = alloc_n_copy(rsv.elements, rsv.first_free);
 	free();
 	elements = currData.first;
 	cap = first_free = currData.second;
+	return *this;
+}
+//移动赋值运算符，必须正确处理自赋值
+StrVec& StrVec::operator=(StrVec &&rsv) noexcept {
+	if (this != &rsv) {
+		//比较左右对象是否为同一个对象，应该比较它们的地址是否相同
+		free();
+		elements = rsv.elements;
+		first_free = rsv.first_free;
+		cap = rsv.cap;
+		rsv.elements = rsv.first_free = rsv.cap = nullptr;
+	}
 	return *this;
 }
 //重新分配内存
@@ -79,11 +95,13 @@ void StrVec::reserve(size_t n) {
 	if (n > capacity()) {
 		auto newData = alloc.allocate(n);//分配新内存空间
 		//将数据从就内存移动到新内存，不直接拷贝！！！
-		auto dest = newData;
-		auto elem = elements;
-		for (size_t i = 0; i != size(); ++i) {
-			alloc.construct(dest++, std::move(*elem++));
-		}
+		//auto dest = newData;
+		//auto elem = elements;
+		//for (size_t i = 0; i != size(); ++i) {
+		//	alloc.construct(dest++, std::move(*elem++));//使用move函数将旧内存中的string移动到新内存
+		//}
+		//改用移动迭代器和uninitilaized_copy算法将string对象从旧内存中移动到新内存
+		auto dest = uninitialized_copy(make_move_iterator(begin()), make_move_iterator(end()), newData);
 		free();
 		elements = newData;
 		first_free = dest;

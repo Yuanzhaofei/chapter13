@@ -13,7 +13,9 @@ public:
 	String(const char *);//接受C风格字符串指针的构造函数
 	String(initializer_list<char>);//接受char列表初始化器的构造函数
 	String(const String &);//拷贝构造函数
+	String(String &&) noexcept;//移动构造函数
 	String& operator=(const String &);//拷贝赋值运算符
+	String& operator=(String &&)noexcept;//移动赋值运算符
 	~String() { free(); };//析构函数
 	void push_back(const char &);//尾部添加元素
 	size_t size() const;//返回元素数量

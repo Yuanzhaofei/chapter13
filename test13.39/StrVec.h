@@ -12,7 +12,9 @@ public:
 	StrVec():elements(nullptr),first_free(nullptr),cap(nullptr){}//默认构造函数
 	StrVec(initializer_list<string>);//接受string列表初始化器的构造函数
 	StrVec(const StrVec &);//拷贝构造函数
+	StrVec(StrVec &&s) noexcept;//移动构造函数
 	StrVec& operator=(const StrVec &);//拷贝赋值运算符
+	StrVec& operator=(StrVec &&) noexcept;//移动赋值运算符
 	~StrVec() { free(); };//析构函数
 	void push_back(const string &);//尾部添加元素
 	size_t size() const;//返回元素数量
