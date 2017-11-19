@@ -15,21 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="StrVec.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="TextQuery.h">
+    <ClInclude Include="String.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="StrVec.cpp">
+    <ClCompile Include="String.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="TextQuery.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="源.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
