@@ -9,7 +9,12 @@ ostream & print(ostream &, const QueryResult &);//´òÓ¡º¯ÊıÉùÃ÷
 
 int main() {
 	ifstream infile("test_book.txt");
-	runQueries(infile);
+	/*runQueries(infile);*/
+	StrVec sv;
+	sv.push_back("Ô¬");
+	cout << sv.capacity()<< endl;
+	sv.reserve(5);
+	cout << sv.capacity() << endl;
 	system("pause");
 	return 0;
 }

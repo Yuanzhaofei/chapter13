@@ -7,7 +7,7 @@
 #include<sstream>
 //TextQuery成员函数定义
 //构造函数
-TextQuery::TextQuery(ifstream& infile) {
+TextQuery::TextQuery(ifstream& infile):file(new StrVec()) {
 	string text;
 	while (getline(infile, text)) {
 		file->push_back(text);//将一行读入text中

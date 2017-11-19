@@ -8,8 +8,11 @@ void runQueries(ifstream &);
 ostream & print(ostream &, const QueryResult &);//´òÓ¡º¯ÊıÉùÃ÷
 
 int main() {
-	ifstream infile("test_book.txt");
-	runQueries(infile);
+	//ifstream infile("test_book.txt");
+	//runQueries(infile);
+	string *sptr1(nullptr), *sptr2(nullptr);
+	if (!sptr1)
+		cout << 0 << endl;
 	system("pause");
 	return 0;
 }

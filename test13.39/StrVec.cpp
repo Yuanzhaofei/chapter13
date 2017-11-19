@@ -1,6 +1,7 @@
 //编译时报错，加入预处理器(项目属性----C/C++----预处理----预处理器定义)：_SCL_SECURE_NO_WARNINGS可以解决
 #include"StrVec.h"
 #include<memory>
+#include<algorithm>
 using namespace std;
 //返回元素数量
 size_t StrVec::size() const {
@@ -31,8 +32,9 @@ pair<string*, string*> StrVec::alloc_n_copy(const string *b, const string *e) {
 void StrVec::free() {
 	if (elements) {
 		//要求释放内存空间的对象不能是空
-		for (auto p = first_free; p != elements;/*为空*/)
-			alloc.destroy(--p);//析构对象
+		for_each(elements, first_free, [](const string s) {alloc.destroy(&s); });
+		//for (auto p = first_free; p != elements;/*为空*/)
+		//	alloc.destroy(--p);//析构对象
 	}
 	alloc.deallocate(elements, cap - elements);//释放内存
 }
