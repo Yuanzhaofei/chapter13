@@ -132,3 +132,9 @@ void String::resize(size_t n, const char &s) {
 	}
 }
 allocator<char> String::alloc;//用于分配元素的alloctor对象
+
+//为String类定义输出运算符
+ostream& operator<<(ostream&os, const String &s) {
+	for_each(s.elements, s.first_free, [&os](const char &c) {os << c; });
+	return os;
+}

@@ -23,6 +23,12 @@ void StrVec::push_back(const string &s) {
 	//经过检查，此时必有足够空间添加新元素
 	alloc.construct(first_free++, s);
 }
+//尾部添加元素（移动版本）
+void StrVec::push_back(string &&s) {
+	chk_n_alloc();
+	//经过检查，此时必有足够空间添加新元素
+	alloc.construct(first_free++, std::move(s));
+}
 //分配新内存后拷贝元素
 pair<string*, string*> StrVec::alloc_n_copy(const string *b, const string *e) {
 	auto data = alloc.allocate(e - b);

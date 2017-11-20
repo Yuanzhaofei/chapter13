@@ -16,7 +16,8 @@ public:
 	StrVec& operator=(const StrVec &);//拷贝赋值运算符
 	StrVec& operator=(StrVec &&) noexcept;//移动赋值运算符
 	~StrVec() { free(); };//析构函数
-	void push_back(const string &);//尾部添加元素
+	void push_back(const string &);//尾部添加元素（拷贝版本）
+	void push_back(string &&);//尾部添加元素（移动版本）
 	size_t size() const;//返回元素数量
 	size_t capacity() const; // 返回当前容量
 	string * begin()const { return elements; }//返回首元素指针

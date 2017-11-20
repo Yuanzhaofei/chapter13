@@ -8,6 +8,7 @@
 #include<utility>
 using namespace std;
 class String {
+	friend ostream& operator<<(ostream&, const String &);//重载输出运算符的友元函数声明
 public:
 	String():elements(nullptr),first_free(nullptr),cap(nullptr){}//默认构造函数
 	String(const char *);//接受C风格字符串指针的构造函数
@@ -38,5 +39,6 @@ private:
 	char* first_free;//指向第一个空闲元素的指针；
 	char* cap;//指向数组尾后的指针
 };
-
+//为String类定义输出运算符
+ostream& operator<<(ostream&, const String &);
 #endif // !STRING_H
